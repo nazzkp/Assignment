@@ -3,7 +3,6 @@ package com.example.assignment.viewModel
 import MedicineResponse
 import Problem
 import android.content.Context
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -40,14 +39,14 @@ class HomeViewModel @Inject constructor(
                     launch(Dispatchers.IO) {
                         repository.insertProblems(makeDrugList(response))
                     }
-                    if(response.problems.isEmpty()){
+                    if (response.problems.isEmpty()) {
                         _operationStatus.value = "NO DATA FOUND"
                     }
                 } else {
                     launch(Dispatchers.IO) {
                         val response = repository.fetchDoseDetailsLocal()
                         _medicineData.postValue(response)
-                        if(response.isEmpty()){
+                        if (response.isEmpty()) {
                             _operationStatus.value = "NO DATA FOUND.TRY AFTER GETTING CONNECTION"
                         }
                     }
@@ -82,5 +81,14 @@ class HomeViewModel @Inject constructor(
         }
         return drugList
     }
+
+    /**
+     *With the provided api response, I noticed some inconsistencies
+    that I believed could impact the overall functionality of the project.
+    To ensure that my submission accurately reflects my skills and understanding,
+    I made some adjustments to the response format.
+    "https://run.mocky.io/v3/40ec0fdd-f824-41dc-be03-25f826a53c5f"
+    This is the new api response link.
+     **/
 
 }

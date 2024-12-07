@@ -36,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
@@ -114,6 +115,7 @@ fun HomeContent(innerPadding: PaddingValues, userName: String?, viewModel: HomeV
                     modifier = Modifier
                         .padding(top = 16.dp)
                         .align(Alignment.Center)
+                        .testTag("Progress Bar")
                 )
             }
             if (medicineList.value != null) {
