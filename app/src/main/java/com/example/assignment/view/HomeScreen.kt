@@ -35,7 +35,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -47,7 +46,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.assignment.model.dataClass.DrugItem
 import com.example.assignment.ui.theme.Purple40
 import com.example.assignment.viewModel.HomeViewModel
-import com.example.orderit.Utils.Utilities
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
@@ -79,7 +77,7 @@ fun HomeContent(innerPadding: PaddingValues, userName: String?, viewModel: HomeV
     val currentTime = remember { LocalTime.now() }
     val timeFormatter = remember { DateTimeFormatter.ofPattern("hh:mm a") }
     val loading = remember { mutableStateOf(true) }
-    val shoeDetails = remember { mutableStateOf(false) }
+    val showDetails = remember { mutableStateOf(false) }
     val medicineList = viewModel.medicineData.observeAsState()
     val status by viewModel.operationStatus.collectAsState()
 
@@ -127,15 +125,15 @@ fun HomeContent(innerPadding: PaddingValues, userName: String?, viewModel: HomeV
                     contentPadding = PaddingValues(16.dp)
                 ) {
                     items(medicineList.value!!) { item ->
-                        Medicine(item, shoeDetails, selectedItem)
+                        Medicine(item, showDetails, selectedItem)
                         loading.value = false
                     }
                 }
             }
         }
     }
-    if (shoeDetails.value) {
-        ShowDetailsDialog(selectedItem.value!!, shoeDetails, innerPadding)
+    if (showDetails.value) {
+        ShowDetailsDialog(selectedItem.value!!, showDetails, innerPadding)
     }
 
     if (status.isNotEmpty()) {

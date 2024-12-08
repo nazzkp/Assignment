@@ -71,7 +71,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    androidTestImplementation("androidx.navigation:navigation-testing:2.8.4")
+    androidTestImplementation(libs.androidx.navigation.testing)
 
     androidTestImplementation(libs.core.ktx)
 
