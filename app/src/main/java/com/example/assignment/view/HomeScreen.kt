@@ -35,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -46,6 +47,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.assignment.model.dataClass.DrugItem
 import com.example.assignment.ui.theme.Purple40
 import com.example.assignment.viewModel.HomeViewModel
+import com.example.orderit.Utils.Utilities
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
@@ -94,9 +96,11 @@ fun HomeContent(innerPadding: PaddingValues, userName: String?, viewModel: HomeV
 
         Text(
             text = "Hi $userName ${currentTime.format(timeFormatter)}",
-            modifier = Modifier.padding(top = 8.dp).semantics {
-                this.contentDescription = "Greeting"
-            },
+            modifier = Modifier
+                .padding(top = 8.dp)
+                .semantics {
+                    this.contentDescription = "Greeting"
+                },
             style = TextStyle(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
@@ -138,6 +142,7 @@ fun HomeContent(innerPadding: PaddingValues, userName: String?, viewModel: HomeV
 
     if (status.isNotEmpty()) {
         loading.value = false
+        Utilities.showToast(LocalContext.current,status)
     }
 }
 
